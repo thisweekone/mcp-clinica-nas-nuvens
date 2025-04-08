@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mcp-server:
+    build: .
+    container_name: mcp-server
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - EVOLUTION_API_URL=${EVOLUTION_API_URL}
+      - EVOLUTION_API_KEY=${EVOLUTION_API_KEY}
+      - MCP_SERVER_URL=${MCP_SERVER_URL}
+      - MCP_API_KEY=${MCP_API_KEY}
+    ports:
+      - "3000:3000"
+    networks:
+      - n8n-network
+
+networks:
+  n8n-network:
+    external: true 
