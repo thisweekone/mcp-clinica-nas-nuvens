@@ -55,4 +55,6 @@ htmlcov/
 local.properties
 .settings/
 .loadpath
-.recommenders 
+.recommenders
+
+node_modules/ 
