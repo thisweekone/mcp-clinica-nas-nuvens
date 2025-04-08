@@ -8,13 +8,23 @@ services:
       - SUPABASE_KEY=${SUPABASE_KEY}
       - EVOLUTION_API_URL=${EVOLUTION_API_URL}
       - EVOLUTION_API_KEY=${EVOLUTION_API_KEY}
-      - MCP_SERVER_URL=${MCP_SERVER_URL}
-      - MCP_API_KEY=${MCP_API_KEY}
+      - MCP_SERVER_URL=http://mcp-server:3000
+      - MCP_API_KEY=mcp-clinica-2024
     ports:
       - "3000:3000"
     networks:
-      - n8n-network
+      - PortainerNet
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 
 networks:
-  n8n-network:
+  PortainerNet:
     external: true 
