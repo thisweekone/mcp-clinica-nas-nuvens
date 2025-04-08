@@ -33,6 +33,29 @@ async def root():
 async def health_check():
     return {"status": "healthy"}
 
+@app.get("/api/tools")
+async def list_tools():
+    tools = [
+        {
+            "name": "send_message",
+            "description": "Envia uma mensagem para um número via WhatsApp",
+            "parameters": {
+                "cnpj": "string",
+                "number": "string",
+                "message": "string"
+            }
+        },
+        {
+            "name": "check_status",
+            "description": "Verifica o status de uma mensagem",
+            "parameters": {
+                "cnpj": "string",
+                "message_id": "string"
+            }
+        }
+    ]
+    return {"tools": tools}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000) 
